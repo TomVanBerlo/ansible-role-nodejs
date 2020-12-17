@@ -1,9 +1,17 @@
 ---
+- name: Setting use_snap to true when snap package url is given
+  set_fact:
+    use_snap: true
+  when: node_package_url is defined
+
 - import_tasks: setup-RedHat.yml
-  when: ansible_os_family == 'RedHat'
+  when: ansible_os_family == 'RedHat' and not use_snap
 
 - import_tasks: setup-Debian.yml
-  when: ansible_os_family == 'Debian'
+  when: ansible_os_family == 'Debian' and not use_snap
+
+- import_tasks: setup-snap.yml
+  when: use_snap
 
 - name: Define nodejs_install_npm_user
   set_fact:

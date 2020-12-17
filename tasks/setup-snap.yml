@@ -1,0 +1,29 @@
+---
+  - name: Install snapd.
+    apt:
+      name:
+        - snapd
+      state: present
+    when: ansible_os_family == 'Debian'
+
+  - name: Install dependencies for snap ansible module
+    pip:
+      name:
+        - urllib3>=1.21.1,<=1.22
+        - chardet>=3.0.2,<3.1.0
+
+  - name: Install nodejs from url
+    community.general.snap:
+      name: node
+      state: present
+      classic: yes
+      package_url: "{{ node_package_url }}"
+    when: node_package_url is defined
+
+  - name: Install latest nodejs from snap channel
+    community.general.snap:
+      name: node
+      state: present
+      classic: yes
+      channel: "{{ nodejs_version | regex_replace('^v?(.*)\\..*$', '\\1') }}/stable"
+    when: not node_package_url is defined
