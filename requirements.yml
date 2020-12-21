@@ -1,0 +1,5 @@
+---
+  collections:
+  - name:  https://github.com/TomVanBerlo/community.general-1.git
+    type: git
+    version: install-snap-from-url
