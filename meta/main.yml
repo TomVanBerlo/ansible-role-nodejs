@@ -1,5 +1,5 @@
 ---
-dependencies: []
+dependencies: {'https://github.com/TomVanBerlo/community.general-1.git': 'install-snap-from-url'}
 
 galaxy_info:
   role_name: nodejs
