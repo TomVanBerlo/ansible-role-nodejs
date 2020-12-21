@@ -1,7 +1,9 @@
 ---
 dependencies:
-  - { 'https://github.com/TomVanBerlo/community.general-1.git': 'install-snap-from-url' }
-
+  - src: https://github.com/TomVanBerlo/community.general-1.git
+    version: install-snap-from-url
+    name: community.general
+    
 galaxy_info:
   role_name: nodejs
   author: geerlingguy
